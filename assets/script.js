@@ -19,12 +19,13 @@ const slides = [
     }
 ];
 const banner = document.getElementById('banner');
+const bannerImg = document.querySelector('.banner-img');
 const dots = document.querySelectorAll('.dot');
 let currentIndex = 0;
 
 // Fonction pour mettre à jour l'image et la tagline
 function updateSlide(index) {
-    banner.style.backgroundImage = `url(${slides[index].image})`;
+    bannerImg.src = `${slides[index].image}`;
     const tagline = document.querySelector('.tagline');
     tagline.innerHTML = slides[index].tagLine;
 
@@ -48,6 +49,22 @@ dots.forEach((dot, index) => {
         currentIndex = index;
         updateSlide(currentIndex);
     });
+});
+
+// Fonction pour changer passer d'une image à une autre automatiquement
+function autoSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlide(currentIndex);
+}
+// Temps d'attente avant passage automatique à l'image suivante c'est 3 secondes
+let autoSlideInterval = setInterval(autoSlide, 3000);
+// Arrêter le défilement automatique au survol
+banner.addEventListener('mouseover', () => {
+    clearInterval(autoSlideInterval);
+});
+// Reprendre le défilement automatique lorsque la souris quitte le carrousel
+banner.addEventListener('mouseout', () => {
+    autoSlideInterval = setInterval(autoSlide, 3000);
 });
 
 // Initialiser le carousel

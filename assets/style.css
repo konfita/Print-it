@@ -149,6 +149,14 @@ header {
 .dot_selected {
 	background-color: #fff;
 }
+/* Ajout d'un effet de doigt lorsque le curseur passe sur les flèches */
+#banner .arrow {
+    cursor: pointer;
+}
+/* Ajout d'un effet de doigt lorsque le curseur passe sur les points */
+.dot {
+    cursor: pointer;
+}
 /* Fin du code CSS pour le carousel */
 #banner p {
 	font-family: 'Roboto Slab', sans-serif;
